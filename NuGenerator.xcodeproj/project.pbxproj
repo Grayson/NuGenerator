@@ -78,15 +78,8 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1D0916B710E19346008C4B23 /* parser.h */,
-				1D1C12EB10E46C1F005C50FD /* operator.h */,
-				1D46573310EA7CF700420AB1 /* operator.m */,
-				1D1C12F210E46C34005C50FD /* nuinternals.h */,
-				1D1C130310E46C94005C50FD /* symbol.h */,
-				1D1C13F410E482AF005C50FD /* enumerable.h */,
-				1D1C133510E4721F005C50FD /* cell.h */,
-				32A70AAB03705E1F00C91783 /* NuGenerator_Prefix.pch */,
-				08FB7796FE84155DC02AAC07 /* NuGenerator.m */,
+				1DA1594610EC131C0019F61C /* Nu headers */,
+				1DA1594C10EC13300019F61C /* Test program stuff */,
 				1D1C12D910E46650005C50FD /* NuYieldOperator.h */,
 				1D1C12DA10E46650005C50FD /* NuYieldOperator.m */,
 				1D1C150A10E56937005C50FD /* NuYieldException.h */,
@@ -112,6 +105,29 @@
 				8DD76FA10486AA7600D96B5E /* NuGenerator */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1DA1594610EC131C0019F61C /* Nu headers */ = {
+			isa = PBXGroup;
+			children = (
+				1D0916B710E19346008C4B23 /* parser.h */,
+				1D1C12EB10E46C1F005C50FD /* operator.h */,
+				1D46573310EA7CF700420AB1 /* operator.m */,
+				1D1C12F210E46C34005C50FD /* nuinternals.h */,
+				1D1C130310E46C94005C50FD /* symbol.h */,
+				1D1C13F410E482AF005C50FD /* enumerable.h */,
+				1D1C133510E4721F005C50FD /* cell.h */,
+			);
+			name = "Nu headers";
+			sourceTree = "<group>";
+		};
+		1DA1594C10EC13300019F61C /* Test program stuff */ = {
+			isa = PBXGroup;
+			children = (
+				32A70AAB03705E1F00C91783 /* NuGenerator_Prefix.pch */,
+				08FB7796FE84155DC02AAC07 /* NuGenerator.m */,
+			);
+			name = "Test program stuff";
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {

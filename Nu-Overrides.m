@@ -21,7 +21,7 @@
     [loopinit evalWithContext:context];
     // evaluate the loop condition
     id test = [looptest evalWithContext:context];
-    id expressions = [cdr cdr];
+    id expressions = [cdr cdr]; // <---- This has been moved to before the loop so that it's in scope for the yield exception.
     while (nu_valueIsTrue(test)) {
         @try
         {
@@ -37,6 +37,11 @@
             // do nothing, just continue with the next loop iteration
         }
 		@catch (NuYieldException *exception) {
+			// Most of this probably isn't particularly useful, but it's an amalgamation of various attempts.
+			
+			// Basically, we want to save the current state when the yield happened (loopContext and loopRemaining)
+			// as well as information for re-creating the loop later (loopArgs and loopOperator).
+			// This returns the NuYieldException which will be our generator.
 			exception.loopContext = context;
 			exception.loopArgs = cdr;
 			exception.loopOperator = self;

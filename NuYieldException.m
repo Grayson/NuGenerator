@@ -11,7 +11,6 @@
 
 
 @implementation NuYieldException
-@synthesize cursor = _cursor;
 @synthesize cdr = _cdr;
 @synthesize context = _context;
 
@@ -30,6 +29,19 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	self.cdr = nil;
+	self.context = nil;
+	self.isFirstRun = nil;
+	self.loopOperator = nil;
+	self.loopContext = nil;
+	self.loopArgs = nil;
+	self.loopRemaining = nil;
+	
+	[super dealloc];
+}
+
 - (NSArray *)allObjects {
 	NSMutableArray *array = [NSMutableArray array];
 	id obj = [self nextObject];
@@ -43,14 +55,17 @@
 - (id)objectEnumerator { return self; }
 
 - (id)nextObject {
+	// On the first run, simply throw what was passed to the yield operator and call it a day.
 	if (_isFirstRun) {
 		_isFirstRun = NO;
 		return [self.cdr evalWithContext:self.context];
 	}
+	
 	// Finish the last iteration
 	[self finishIteration];
 	
-	// Iterate
+	// Iterate the loop with our own looping operators.  We want to override the standard operators since we
+	// want to catch each yield exception and treat it as a simple `return`.
 	id returnValue = nil;
 	if ([self.loopOperator isKindOfClass:[Nu_for_operator class]])
 		returnValue = [self forLoopWithArguments:self.loopArgs context:self.loopContext];
@@ -77,6 +92,9 @@
 	return result;
 }
 
+#pragma mark -
+#pragma mark Nu enumeration
+
 - (id) each:(id) callable
 {	
     id args = [[NuCell alloc] init];
@@ -102,6 +120,9 @@
     [args release];
     return self;
 }
+
+#pragma mark -
+#pragma mark Custom Nu loops
 
 - (id) forLoopWithArguments:(id)cdr context:(NSMutableDictionary *)context
 {
@@ -150,6 +171,8 @@
     return result;
 }
 
+// The Nu `while` and `until` loops are basically the same so I got lazy and put them both in the same
+// looping method.
 - (id) whileOrUntilLoopWithArguments:(id)cdr context:(NSMutableDictionary *)context isWhileLoop:(BOOL)isWhileLoop
 {
     id result = Nu__null;

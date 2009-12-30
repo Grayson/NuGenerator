@@ -8,24 +8,16 @@
 
 #import "NuYieldOperator.h"
 
-@implementation NuParser(x)
--(id)current { return current; }
-@end
-
-
 @implementation NuYieldOperator
 
+// This is called from generator.nu to add `yield` as a keyword.  This should be added automatically, though.
 +(void)install {
-	NSLog(@"%s", _cmd);
 	NuSymbolTable *table = [NuSymbolTable sharedSymbolTable];
 	[(NuSymbol *) [[table symbolWithCString:"yield"] retain] setValue:[[[self class] alloc] init]];
 }
 
-- (void)dealloc
-{
-	[super dealloc];
-}
-
+// When `yield` is encountered, save the yielded value information (cdr and context) and throw an exception.
+// All of the other necessary state information will be added by the looping function that processes the exception.
 - (id) callWithArguments:(id)cdr context:(NSMutableDictionary *)context {
 	NuYieldException *exception = [[NuYieldException new] autorelease];
 	exception.cdr = cdr;

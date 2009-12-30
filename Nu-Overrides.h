@@ -8,8 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NuYieldException.h"
-// #import "operator.m"
 
+/*
+	Nu-Overrides.h is a short collection of changes to Nu's looping operators.  Basically, they are copied
+	and pasted from operations.m with the addition of the NuYieldException handler.  Also, the initial expression
+	evaluation (`id expressions = [cdr cdr];`) has been moved to outside of the loop so that `expressions` is in
+	scope for the yield exception.
+	
+	Only the `for` operator has additional comments since the same basic idea is used in all three.
+*/
 
 
 @interface Nu_for_operator : NuOperator {}
