@@ -34,6 +34,7 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		1D09167C10E191BA008C4B23 /* Nu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nu.framework; path = /Library/Frameworks/Nu.framework; sourceTree = "<absolute>"; };
 		1D0916B710E19346008C4B23 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parser.h; path = ../../Programming_examples/nu/objc/parser.h; sourceTree = SOURCE_ROOT; };
+		1D0997A610EC4B1C0028C531 /* generator.nu */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generator.nu; sourceTree = "<group>"; };
 		1D1C12D910E46650005C50FD /* NuYieldOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NuYieldOperator.h; sourceTree = "<group>"; };
 		1D1C12DA10E46650005C50FD /* NuYieldOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NuYieldOperator.m; sourceTree = "<group>"; };
 		1D1C12EB10E46C1F005C50FD /* operator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = operator.h; path = ../../Programming_examples/nu/objc/operator.h; sourceTree = SOURCE_ROOT; };
@@ -124,6 +125,7 @@
 		1DA1594C10EC13300019F61C /* Test program stuff */ = {
 			isa = PBXGroup;
 			children = (
+				1D0997A610EC4B1C0028C531 /* generator.nu */,
 				32A70AAB03705E1F00C91783 /* NuGenerator_Prefix.pch */,
 				08FB7796FE84155DC02AAC07 /* NuGenerator.m */,
 			);

@@ -33,7 +33,6 @@
 {
 	self.cdr = nil;
 	self.context = nil;
-	self.isFirstRun = nil;
 	self.loopOperator = nil;
 	self.loopContext = nil;
 	self.loopArgs = nil;
@@ -134,6 +133,10 @@
 	// Loop was initialized at original for loop call.
     // id loopinit = [controls car];
     // [loopinit evalWithContext:context];
+	
+	// Since the loop increment happens at the bottom of the following while loop, there's no increment after 
+	// a yield.  Since this will happen after a yield, this accounts for the previous failure to increment.
+	[loopincr evalWithContext:context];
 
     // evaluate the loop condition
     id test = [looptest evalWithContext:context];
@@ -153,7 +156,6 @@
             // do nothing, just continue with the next loop iteration
         }
 		@catch (NuYieldException *exception) {
-			[loopincr evalWithContext:context];
 			self.loopContext = context;
 			self.loopRemaining = [expressions cdr];
 			result = [exception.cdr evalWithContext:self.loopContext];
